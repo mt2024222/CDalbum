@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="sr-Cyrl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Твој мали CD албум</title>
+<style>
+:root{--paper:#fbf5ed;--ink:#4b3b38;--muted:#806c67;--accent:#9b6f6f;--line:#dbc9bf;--white:#fffdf9}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);font-family:Georgia,serif;color:var(--ink)}main{max-width:720px;margin:auto;padding:28px 16px;text-align:center}.eyebrow,.number,.count{font:11px Arial,sans-serif;letter-spacing:3px;color:var(--muted)}.heart{font-size:28px;margin:8px}.title{font-size:clamp(32px,7vw,46px);margin:4px 0}.subtitle{font-style:italic;color:var(--muted);margin:10px 0 24px}.book{max-width:610px;margin:auto;padding:12px;background:#e7d7ca;border:1px solid #cdb5a7;border-radius:8px 20px 20px 8px;box-shadow:0 16px 32px #6c4b3b20;perspective:1200px}.page{min-height:410px;background:var(--white);border:1px solid var(--line);border-radius:5px 14px 14px 5px;padding:clamp(18px,4vw,30px);display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:center;text-align:left;transform-origin:left center;animation:pageIn .3s ease}.cover{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:linear-gradient(135deg,#fffdf9,#f2e3d9)}@keyframes pageIn{from{opacity:.4;transform:rotateY(-8deg)}to{opacity:1;transform:rotateY(0)}}.cover-title{font-size:clamp(32px,7vw,46px);margin:15px 0 8px}h2{font-size:clamp(22px,4vw,29px);margin:8px 0}.note{color:var(--muted);font-size:15px;line-height:1.55;white-space:pre-wrap}.disc-side{display:flex;flex-direction:column;align-items:center;gap:12px}.disc{width:min(100%,220px);aspect-ratio:1;border-radius:50%;border:1px solid #b7a7a0;background:repeating-radial-gradient(circle at center,#e5e0dc 0 2px,#c8c0bc 3px 4px,#e9e4df 5px 8px);box-shadow:0 7px 13px #49342a25;position:relative;display:grid;place-items:center;cursor:pointer}.disc:before{content:"";position:absolute;inset:8%;border:1px solid #ffffffaa;border-radius:50%}.disc.spinning{animation:spin 2.2s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}.label-disc{width:34%;aspect-ratio:1;border-radius:50%;background:#b87e7e;border:5px double #f7e9df;display:grid;place-items:center;color:#fff9f3;font:8px Arial,sans-serif;letter-spacing:1px;text-align:center;z-index:1}.hole{position:absolute;width:8px;height:8px;background:var(--white);border:1px solid #9c8d85;border-radius:50%;z-index:2}.disc-hint{font:11px Arial,sans-serif;color:var(--muted)}audio{width:100%;margin-top:6px}.player{width:100%;max-width:270px}.nav{display:flex;gap:12px;max-width:610px;margin:14px auto}.nav button{flex:1;padding:12px;border:1px solid var(--line);background:var(--white);border-radius:999px;color:var(--ink);cursor:pointer}.nav button:disabled{opacity:.35}.count{margin-top:12px}.footer{margin-top:24px;color:var(--muted);font-style:italic}.tip{font:12px Arial,sans-serif;line-height:1.5;color:var(--muted);max-width:550px;margin:18px auto 0}@media(max-width:520px){.page{grid-template-columns:1fr;gap:14px;min-height:0}.disc{width:min(58vw,190px)}.page.cover{min-height:390px}}
+</style>
+</head>
+<body><main>
+<div class="eyebrow">ДВЕ ГОДИНИЦЕ</div><div class="heart">♡</div><div class="title">Твој мали CD албум</div><div class="subtitle"></div>
+<div class="book"><section id="page" class="page cover"></section></div>
+<div class="nav"><button id="prev" disabled>← претходна</button><button id="next">отвори албум →</button></div><div class="count" id="count">NASLOVNA STRANA</div>
+<div class="footer">За тебе. Од мене. ♡</div><div class="tip">Ово су песме које сам у неком тренутку пожелела да ти отпевам. Сада имаш место на ком можеш поново да их чујеш.</div>
+</main>
+<script>
+// =====================================================
+// UREDI ALBUM OVDE: menjaj naslove, poruke i audio putanje.
+// Stavi pesme u folder "audio" pored ovog HTML fajla.
+// Primer: src: "audio/nasa-pesma.mp3"
+// Ako još nemaš fajl za pesmu, ostavi src: "".
+// Kopiraj/obriši ceo red objekta da dodaš/ukloniš pesmu.
+// =====================================================
+const albumTitle = "Песме које сам ти певала";
+const coverMessage = "♡";
+const songs = [
+ {title:"Песма 1", note:" <br>Загрли ме - Здравко Чолић <br><br><br><br>Знаш да сам увек ту за загрљај...", src:"audio/zagrliMe1.mp3"},
+ {title:"Песма 2", note:" <br>Hey there Delilah - Plain White T's <br><br><br><br>♡", src:"audio/heyThereDelilah1.mp3"},
+ {title:"Песма 3", note:" <br>Нема више времена - Црвена јабука <br><br><br>Има времена за све ♡", src:"audio/nemaViseVremena1.mp3"},
+ {title:"Песма 4", note:" <br>Рекла је да у мојој глави чује гитаре и бубњеве - Пилоти <br><br><br>♡", src:"audio/reklaJeDaUMojoj1.mp3"},
+ {title:"Песма 5", note:" <br>Ironic - Alanis Morissette <br><br><br><br>♡", src:"audio/ironic1.mp3"},
+ {title:"Песма 6", note:" <br>Everybody Talks - Neon Trees <br><br><br><i>Hey, baby, won't you look my way?<br><i>I can be your new addiction", src:"audio/everybodyTalks1.mp3"},
+ {title:"Песма 7", note:" <br>Љубав не побеђује - Ђорђе Балашевић <br><br><i>И можда не побеђује<br><i>Али је зато непобедива...", src:"audio/ljubavNePobedjuje1.mp3"},
+ {title:"Песма 8", note:" <br>La Vie En Rose - Edith Piaf <br><br><i>And when you speak angels sing from above, everyday words seem to turn into love songs.", src:"audio/laVieEnRose1.mp3"},
+ {title:"Песма 9", note:" <br>Those Eyes - New West <br><br><br><br>И још једна нова :)", src:"audio/thoseEyes.mp3"}
+];
+// Ostatak koda pravi stranice i animaciju; ne moraš da ga menjaš.
+let current=-1;
+const page=document.getElementById("page"),prev=document.getElementById("prev"),next=document.getElementById("next"),count=document.getElementById("count");
+function render(){
+ page.className="page"; page.innerHTML="";
+ if(current<0){
+  page.classList.add("cover");
+  page.innerHTML=`<div class="eyebrow">Твоја слатка колекција </div><div class="disc" style="width:145px;margin:20px auto" aria-hidden="true"><div class="label-disc">ДАВИД<br>♡♡♡<br>ТИЋА</div><div class="hole"></div></div><div class="cover-title">${albumTitle}</div><div class="note">${coverMessage}</div>`;
+  count.textContent="НАСЛОВНА СТРАНА";next.textContent="отвори албум →";
+ }else{
+  const s=songs[current];
+  page.innerHTML=`<div><div class="number">TRACK ${String(current+1).padStart(2,"0")} / ${String(songs.length).padStart(2,"0")}</div><h2>${s.title}</h2><div class="note">${s.note}</div></div><div class="disc-side"><div class="disc" id="disc" role="button" tabindex="0" aria-label="Pusti ili zaustavi CD"><div class="label-disc">14. 10. '26.<br>♡</div><div class="hole"></div></div><div class="disc-hint">ДОДИРНИ CD ДА ГА ЗАВРТИШ</div><div class="player">${s.src?`<audio id="audio" controls preload="none"><source src="${s.src}"></audio>`:`<div class="note" style="font-size:12px;text-align:center">Ovde će biti tvoja pesma.<br>Dodaj putanju u kodu.</div>`}</div></div>`;
+  count.textContent=`СТРАНА ${current+1} ОД ${songs.length}`;next.textContent=current===songs.length-1?"kraj albuma ♡":"следећа страна →";
+  const disc=document.getElementById("disc"),audio=document.getElementById("audio");
+  function toggle(){if(audio){if(audio.paused){audio.play().catch(()=>{});disc.classList.add("spinning")}else{audio.pause();disc.classList.remove("spinning")}}else{disc.classList.toggle("spinning")}}
+  disc.addEventListener("click",toggle);disc.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();toggle()}});
+  if(audio){audio.addEventListener("play",()=>disc.classList.add("spinning"));audio.addEventListener("pause",()=>disc.classList.remove("spinning"));audio.addEventListener("ended",()=>disc.classList.remove("spinning"))}
+ }
+ prev.disabled=current<0;next.disabled=false;
+ if(current===songs.length-1)next.textContent="назад на почетак ↺";
+}
+prev.addEventListener("click",()=>{if(current>=0){current--;render()}});
+next.addEventListener("click",()=>{if(current<songs.length-1){current++;render()}else{current=-1;render()}});
+render();
+</script></body></html>
